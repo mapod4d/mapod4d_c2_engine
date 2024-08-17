@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=3 uid="uid://u7n3eafa75ng"]
+
+[ext_resource type="Script" path="res://mapod4d_core/mapod4d_metaverse/mapod4d_metaverse.gd" id="1_pufkr"]
+[ext_resource type="Environment" uid="uid://c5r0toxf3n135" path="res://mapod4d_core/mapod4d_metaverse/mapod4d_metaverse_environment.tres" id="2_nw3on"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qllnu"]
+albedo_color = Color(0.470588, 0.470588, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nt3fh"]
+transparency = 1
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 16.0
+
+[node name="Mapod4dMetaverse" type="Node3D"]
+script = ExtResource("1_pufkr")
+
+[node name="MapodArea" type="Node3D" parent="."]
+
+[node name="MetaveseEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("2_nw3on")
+
+[node name="Planets" type="Node" parent="."]
+
+[node name="PlanetExample" type="CSGSphere3D" parent="Planets"]
+visible = false
+radius = 1.0
+radial_segments = 100
+rings = 100
+material = SubResource("StandardMaterial3D_qllnu")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 20)
+light_energy = 0.2
+shadow_enabled = true
+
+[node name="Sun" type="CSGSphere3D" parent="DirectionalLight3D"]
+radius = 0.15
+radial_segments = 100
+rings = 100
+material = SubResource("StandardMaterial3D_nt3fh")
